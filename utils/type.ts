@@ -1,13 +1,38 @@
-export type StartupTypeCard = {
-  _id: number,
+export type StartupType = {
+  id: number,
   title: string,
-  _createdAt: Date,
+  createdAt: Date,
   views: number,
-  author: {
-    _id: number,
-    name: string,
-  }
+  Author: AuthorType,
   description: string,
   image: string,
   category: string,
+  authorid: number;
+}
+
+
+export type CreatingStartupType = {
+  title: string,
+  description: string,
+  image: string,
+  category: string,
+  authorid: number
+}
+
+export type AuthorType = {
+  id: number,
+  name: string,
+  username: string,
+  image: string,
+  email: string,
+  bio: string,
+}
+
+export type CreatingAuthorType = {
+  id: string
+  name: string,
+  username: string,
+  image: string,
+  email: string,
+  bio: string,
 }

@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Startup {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(100)
+  description String
+  views       Int      @default(1)
+  image       String
+  category    String
+  // slug        String   @ignore
+  // pitch       String   @ignore
+  createdAt   DateTime @default(now())
+  authorid    Int
+  Author      Author   @relation(fields: [authorid], references: [id])
+}
+
+model Author {
+  id       Int       @id
+  name     String
+  username String
+  email    String    @unique
+  image    String
+  bio      String
+  startup  Startup[]
+}

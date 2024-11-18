@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/logo.png";
 import { auth, signIn, signOut } from "@/auth";
+import { Session } from "@/app/(root)/page";
 
 
 
 
 export default async function NavBar() {
-  const session = await auth()
+  const session = await auth() as Session
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
       <nav className="flex justify-between items-center">
@@ -26,7 +27,7 @@ export default async function NavBar() {
               }}>
                 <button>Logout</button>
               </form>
-              <Link href={`/user/${session.user.id}`}>
+              <Link href={`/user/${session?.id}`}>
                 <span>{session.user.name}</span>
               </Link>
             </>

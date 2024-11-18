@@ -170,7 +170,7 @@
   }
 
   .startup-form_textarea {
-    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300 !important;
+    @apply border-[3px] border-black p-5 text-[18px] scroll-bar text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300 h-[250px] !important;
   }
 
   .startup-form_error {
@@ -200,10 +200,10 @@
 
   .pattern {
     background-image: linear-gradient(to right,
-        transparent 49.5%,
+        transparent 48.5%,
         rgba(251, 232, 67, 0.2) 49.5%,
         rgba(251, 232, 67, 0.6) 50.5%,
-        transparent 50.5%);
+        transparent 51.5%);
     background-size: 5% 100%;
     background-position: center;
     background-repeat: repeat-x;
@@ -211,6 +211,10 @@
 
   .tag-tri {
     @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
+  }
+
+  .scroll-bar::-webkit-scrollbar {
+    width: 0px;
   }
 }
 
