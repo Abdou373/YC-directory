@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json({ message: "Creating Seccessful" }, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ message: "Internal server Error" }, { status: 500 })
   }
 }

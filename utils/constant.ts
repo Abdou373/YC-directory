@@ -1,5 +1,5 @@
 const DEVELOPMENT_DOMAIN = "http://localhost:3000";
-const PRODUCTION_DOMAIN = "yc-directory-brown-five.vercel.app";
+const PRODUCTION_DOMAIN = "https://yc-directory-brown-five.vercel.app";
 
 
 

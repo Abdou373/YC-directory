@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(startups, { status: 200 })
   } catch {
-    return NextResponse.json({ message: "Internal Searver Error" }, { status: 500 })
+    return NextResponse.json({ message: "Internal Searver error" }, { status: 500 })
   }
 }
 
