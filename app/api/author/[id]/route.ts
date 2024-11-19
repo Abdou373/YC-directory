@@ -9,15 +9,15 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   try {
     const { id } = await params;
 
-    const user = await prisma.author.findUnique({ where: { id: parseInt(id) }, include: { startup: { include: { Author: true } } } }) as AuthorType;
+    const user = await prisma.author.findUnique({ where: { id: parseInt(id) }, include: { startup: { include: { Author: true } } } }) as AuthorType | null;
 
     if (!user) {
-      return NextResponse.json({ message: "user not found" }, { status: 404 })
+      return NextResponse.json(null, { status: 404 })
     }
 
     return NextResponse.json(user, { status: 200 })
-  } catch (error) {
-    return NextResponse.json({ message: error }, { status: 200 })
+  } catch {
+    return NextResponse.json({ message: "Internal server error" }, { status: 200 })
   }
 }
 

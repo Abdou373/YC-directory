@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import axios from "axios"
 import { DOMAIN } from "./utils/constant"
+import { AuthorType } from "./utils/type"
 
 
 
@@ -11,8 +12,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async signIn({ profile, user }) {
 
-      const response = await axios.get(`${DOMAIN}/api/author/${profile?.id}`)
-      const existingUser = await response.data
+      const response = await fetch(`${DOMAIN}/api/author/${profile?.id}`)
+
+      const existingUser = await response.json() as AuthorType | null;
+
 
       if (!existingUser) {
 
@@ -31,8 +34,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async jwt({ profile, account, token }) {
       if (profile && account) {
-        const response = await axios.get(`${DOMAIN}/api/author/${profile?.id}`)
-        const user = await response.data
+        const response = await fetch(`${DOMAIN}/api/author/${profile?.id}`)
+        const user = await response.json()
         token.id = user.id
       }
 
