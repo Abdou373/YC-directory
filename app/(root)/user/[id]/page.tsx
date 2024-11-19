@@ -1,15 +1,10 @@
 import { auth } from "@/auth";
-import { Session } from "@/app/(root)/page";
+import { Session } from "@/utils/type";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constant";
 import { AuthorType } from "@/utils/type";
 import Image from "next/image";
 import StartupCard from "@/components/StartupCard";
-import Link from "next/link";
-import { EyeIcon } from "lucide-react";
-import { formatDate } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-
 
 
 

@@ -1,5 +1,5 @@
 import { formatDate } from "@/lib/utils";
-import { AuthorType, StartupType } from "@/utils/type";
+import { StartupType } from "@/utils/type";
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,7 +36,13 @@ export default function StartupCard({ startup }: { startup: StartupType }) {
       <Link href={`/startup/${startup.id}`}>
         <p className="startup-card_desc">{startup.description}</p>
 
-        <img src={startup.image} alt="placeholder" className="startup-card_img" />
+        <Image
+          src={startup.image}
+          alt="placeholder"
+          className="startup-card_img"
+          height={600}
+          width={600}
+        />
       </Link>
       <div className="flex-between gap3 mt-5">
         <Link href={`/?query=${startup.category.toLowerCase()}`}>

@@ -26,7 +26,13 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       </section>
 
       <section className="section_container">
-        <img src={startup.image} alt="thumbmail" className="w-full h-auto rounded-xl" />
+        <Image
+          src={startup.image}
+          alt="thumbmail"
+          className="w-full h-auto rounded-xl"
+          height={1500}
+          width={1500}
+        />
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
             <Link

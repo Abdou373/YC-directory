@@ -17,7 +17,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     return NextResponse.json(user, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ message: "internal server error" }, { status: 200 })
+    return NextResponse.json({ message: error }, { status: 200 })
   }
 }
 
@@ -36,6 +36,6 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     return NextResponse.json({ message: "Updating secc" }, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ message: "Internal server Error" }, { status: 500 })
+    return NextResponse.json({ message: error }, { status: 500 })
   }
 }

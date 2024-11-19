@@ -2,21 +2,11 @@ import StartupCard from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 import { StartupType } from "@/utils/type";
 import { DOMAIN } from "@/utils/constant";
-import { auth } from "@/auth";
-import { User } from "next-auth";
 
-export interface Session {
-  id: number,
-  expires: string,
-  user: User
-}
+
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ query: string }> }) {
   const { query } = await searchParams;
-
-
-  const session = await auth() as Session | null
-
 
   let response: Response = await fetch(`${DOMAIN}/api/startup?query=${query}`, { cache: 'no-store' });
   if (query === undefined) {

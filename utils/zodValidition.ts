@@ -7,9 +7,7 @@ export const formSchema = z.object({
   image: z.string({ message: "set image url" }).url().refine(async (url) => {
     try {
       const res = await fetch(url, { method: 'HEAD' });
-      console.log(res)
       const contentType = res.headers.get('content-type');
-      console.log(contentType)
       return (contentType?.startsWith('image/'))
     } catch {
       return false;

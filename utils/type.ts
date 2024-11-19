@@ -1,3 +1,5 @@
+import { User } from "next-auth";
+
 export type StartupType = {
   id: number,
   title: string,
@@ -41,4 +43,10 @@ export type CreatingAuthorType = {
   image: string,
   email: string,
   bio: string,
+}
+
+export interface Session {
+  id: number,
+  expires: string,
+  user: User
 }

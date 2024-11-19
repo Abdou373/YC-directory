@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/logo.png";
 import { auth, signIn, signOut } from "@/auth";
-import { Session } from "@/app/(root)/page";
+import { Session } from "@/utils/type";
+import { BadgePlus, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 
 
@@ -19,16 +21,24 @@ export default async function NavBar() {
           {session && session.user ? (
             <>
               <Link href={"/startup/create"} className="">
-                <span>Create</span>
+                <span className="max-sm:hidden">Create</span>
+                <BadgePlus className="size-6 sm:hidden" />
               </Link>
-              <form action={async () => {
+              <form className="h-6" action={async () => {
                 "use server";
                 await signOut({ redirectTo: "/" })
               }}>
-                <button>Logout</button>
+                <button>
+                  <span className="max-sm:hidden">Logout</span>
+                  <LogOut className="size-6 sm:hidden text-red-500" />
+                </button>
               </form>
               <Link href={`/user/${session?.id}`}>
-                <span>{session.user.name}</span>
+                {/* <span>{session.user.name}</span> */}
+                <Avatar className="size-10">
+                  <AvatarImage src={session.user.image || ""} alt={session.user.name || ""} />
+                  <AvatarFallback>AV</AvatarFallback>
+                </Avatar>
               </Link>
             </>
           ) : (

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import StartupForm from "@/components/StartupForm";
-import { Session } from "@/app/(root)/page";
+import { Session } from "@/utils/type";
 import { redirect } from "next/navigation";
 
 

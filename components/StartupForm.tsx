@@ -17,14 +17,13 @@ import { StartupType } from "@/utils/type";
 
 export default function StartupForm({ authorid }: { authorid: number }) {
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [pitch, setPitch] = useState("");
+  // const [pitch, setPitch] = useState("");
 
   const { toast } = useToast()
 
   const router = useRouter()
 
-  async function hendleFormSubmit(prevState: any, formData: FormData) {
-    console.log("gooood")
+  async function hendleFormSubmit(prevState: { error: string, status: string } | undefined, formData: FormData) {
     try {
       const formValues = {
         title: formData.get('title') as string,
@@ -40,6 +39,7 @@ export default function StartupForm({ authorid }: { authorid: number }) {
       const response = await axios.post(`${DOMAIN}/api/startup`, { ...formValues, authorid })
       const newStartup = await response.data as StartupType;
 
+      console.log(state)
 
       router.replace(`${DOMAIN}/startup/${newStartup.id}`)
     } catch (error) {
@@ -56,6 +56,8 @@ export default function StartupForm({ authorid }: { authorid: number }) {
             color: "white"
           }
         })
+
+        console.log(prevState)
 
         return { ...prevState, error: "validation Field", status: "ERROR" }
 
