@@ -46,11 +46,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
         </p>
         <ul className="mt-7 card_grid">
           {startups?.length > 0 ? (
-            startups.map((post, i) => [
-              <StartupCard key={i} post={post} />
-            ])
+            startups.map((startup, i) => (
+              <StartupCard key={i} startup={startup} />
+            ))
           ) :
-            <p className="no-result">no startup found</p>
+            <p className="no-result">No startup found</p>
           }
         </ul>
       </section>

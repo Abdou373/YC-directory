@@ -4,11 +4,15 @@ import { StartupType } from "@/utils/type"
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   const response = await axios.get(`${DOMAIN}/api/startup/${id}`)
+  if (response.status === 404) {
+    return notFound()
+  }
 
   const startup = await response.data as StartupType;
 
@@ -28,7 +32,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             <Link
               href={`/user/${startup.Author.id}`}
               className="flex gap-2 items-center mb-3">
-              <Image src={"https://avatars.githubusercontent.com/u/154231201?v=4"} alt="avatar"
+              <Image src={startup.Author.image} alt={startup.Author.name}
                 width={64} height={64}
                 className="rounded-full drop-shadow-lg" />
               <div>

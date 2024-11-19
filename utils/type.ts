@@ -3,7 +3,12 @@ export type StartupType = {
   title: string,
   createdAt: Date,
   views: number,
-  Author: AuthorType,
+  Author: {
+    id: number,
+    name: string,
+    username: string,
+    image: string
+  }
   description: string,
   image: string,
   category: string,
@@ -26,6 +31,7 @@ export type AuthorType = {
   image: string,
   email: string,
   bio: string,
+  startup: StartupType[]
 }
 
 export type CreatingAuthorType = {

@@ -1,4 +1,5 @@
 import { prisma } from "@/utils/db";
+import { AuthorType } from "@/utils/type";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -6,10 +7,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    console.log("from api get author")
     const { id } = await params;
 
-    const user = await prisma.author.findUnique({ where: { id: parseInt(id) } })
+    const user = await prisma.author.findUnique({ where: { id: parseInt(id) }, include: { startup: { include: { Author: true } } } }) as AuthorType;
+
+    if (!user) {
+      return NextResponse.json({ message: "user not found" }, { status: 404 })
+    }
 
     return NextResponse.json(user, { status: 200 })
   } catch (error) {
@@ -24,12 +28,11 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const body = await request.json()
 
-    const user = await prisma.author.update({
+    await prisma.author.update({
       where: { id: parseInt(id) }, data: {
         username: body.username,
       }
     })
-    console.log(user)
 
     return NextResponse.json({ message: "Updating secc" }, { status: 200 })
   } catch (error) {

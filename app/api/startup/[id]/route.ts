@@ -17,7 +17,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       include: {
         Author: true
       }
-    }) as StartupType;
+    }) as StartupType | null;
+    if (!startup) {
+      return NextResponse.json({ message: "Startup not found" }, { status: 404 })
+    }
 
     await prisma.startup.update({
       where: { id: parseInt(id) }, data: {
