@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
           Author: true
         }
       }) as StartupType[]
-      // if (!startups) {
       const startups2 = await prisma.startup.findMany({
         where: {
           category: {
@@ -33,7 +32,6 @@ export async function GET(request: NextRequest) {
           Author: true
         }
       }) as StartupType[]
-      // }
       startups = [...startups1, ...startups2]
 
     } else {
@@ -58,6 +56,7 @@ export async function POST(request: NextRequest) {
         image: Body.image,
         category: Body.category,
         authorid: Body.authorid,
+        pitch: Body.pitch
       }
     })
 

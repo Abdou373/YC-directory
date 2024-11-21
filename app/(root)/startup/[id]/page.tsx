@@ -5,6 +5,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import markdownit from "markdown-it"
+
+const md = markdownit()
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -14,8 +17,10 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     return notFound()
   }
 
+
   const startup = await response.data as StartupType;
 
+  const pitch = md.render(startup.pitch)
 
   return (
     <>
@@ -48,8 +53,19 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             </Link>
             <p className="category-tag">{startup.category}</p>
           </div>
+
+
+          <h3 className="text-30-bold">Pitch Details</h3>
+          {pitch ? (
+            <article
+              dangerouslySetInnerHTML={{ __html: pitch }}
+              className="prose"
+            />
+          ) : <p className="no-result">No details provided</p>}
         </div>
       </section>
+
+
 
       <div className="view-container">
         <div className="view-text">{startup.views} views</div>

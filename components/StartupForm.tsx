@@ -1,6 +1,6 @@
 "use client";
 
-// import MDEditor, { commands } from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import { StartupType } from "@/utils/type";
 
 export default function StartupForm({ authorid }: { authorid: number }) {
   const [errors, setErrors] = useState<Record<string, string>>({})
-  // const [pitch, setPitch] = useState("");
+  const [pitch, setPitch] = useState("");
 
   const { toast } = useToast()
 
@@ -30,16 +30,14 @@ export default function StartupForm({ authorid }: { authorid: number }) {
         description: formData.get('description') as string,
         category: formData.get('category') as string,
         image: formData.get('link') as string,
-        // pitch
+        pitch: pitch
       }
 
       await formSchema.parseAsync(formValues)
 
-      console.log(formValues)
       const response = await axios.post(`${DOMAIN}/api/startup`, { ...formValues, authorid })
       const newStartup = await response.data as StartupType;
 
-      console.log(state)
 
       router.replace(`${DOMAIN}/startup/${newStartup.id}`)
     } catch (error) {
@@ -126,7 +124,7 @@ export default function StartupForm({ authorid }: { authorid: number }) {
         />
         {errors.link && <p className="startup-form_error">{errors.link}</p>}
       </div>
-      {/* <div data-color-mode="light">
+      <div data-color-mode="light">
         <label htmlFor="pitch" className="startup-form_label">Pitch</label>
         <MDEditor
           value={pitch}
@@ -140,8 +138,7 @@ export default function StartupForm({ authorid }: { authorid: number }) {
           }}
         />
         {errors.pitch && <p className="startup-form_error">{errors.pitch}</p>}
-      </div> */}
-
+      </div>
       <Button type="submit" className="startup-form_btn text-white" disabled={isPending}>
         {isPending ? 'Submiting...' : 'Submit Your Startup'}
         <Send className="size-6 ml-2" />

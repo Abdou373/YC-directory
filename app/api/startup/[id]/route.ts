@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   try {
     const startup = await prisma.startup.findUnique({
       where: {
-        id: parseInt(id)
+        id: id
       },
       include: {
         Author: true
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
 
     await prisma.startup.update({
-      where: { id: parseInt(id) }, data: {
+      where: { id: id }, data: {
         views: startup.views + 1
       }
     })

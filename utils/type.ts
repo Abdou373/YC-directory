@@ -1,7 +1,7 @@
 import { User } from "next-auth";
 
 export type StartupType = {
-  id: number,
+  id: string,
   title: string,
   createdAt: Date,
   views: number,
@@ -14,6 +14,7 @@ export type StartupType = {
   description: string,
   image: string,
   category: string,
+  pitch: string,
   authorid: number;
 }
 
@@ -23,6 +24,7 @@ export type CreatingStartupType = {
   description: string,
   image: string,
   category: string,
+  pitch: string
   authorid: number
 }
 
