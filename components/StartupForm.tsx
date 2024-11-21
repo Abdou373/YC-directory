@@ -1,6 +1,6 @@
 "use client";
 
-import MDEditor, { commands } from '@uiw/react-md-editor';
+import MDEditor from '@uiw/react-md-editor';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,6 @@ export default function StartupForm({ authorid }: { authorid: number }) {
           }
         })
 
-        console.log(prevState)
 
         return { ...prevState, error: "validation Field", status: "ERROR" }
 
@@ -74,6 +73,8 @@ export default function StartupForm({ authorid }: { authorid: number }) {
     error: "",
     status: "INITIAL"
   })
+
+  console.log(state)
   return (
     <form action={formAction} className="startup-form">
       <div>
