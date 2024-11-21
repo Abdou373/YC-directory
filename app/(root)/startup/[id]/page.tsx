@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           {pitch ? (
             <article
               dangerouslySetInnerHTML={{ __html: pitch }}
-              className="prose"
+              className="prose !max-w-full"
             />
           ) : <p className="no-result">No details provided</p>}
         </div>

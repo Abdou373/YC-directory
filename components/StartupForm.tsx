@@ -96,7 +96,7 @@ export default function StartupForm({ authorid }: { authorid: number }) {
           name="description"
           className="startup-form_textarea"
           placeholder="Startup Description"
-          maxLength={500}
+          maxLength={270}
           required
         />
         {errors.description && <p className="startup-form_error">{errors.description}</p>}
